@@ -10,7 +10,6 @@ import com.example.caloriesapp.databinding.ActivityLoginBinding
 import com.example.caloriesapp.network.LoginResponse
 import com.example.caloriesapp.network.RetrofitInstance
 import com.example.caloriesapp.network.User
-import com.example.caloriesapp.ui.home.HomeFragment
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

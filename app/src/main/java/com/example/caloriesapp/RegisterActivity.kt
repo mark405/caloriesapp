@@ -28,7 +28,7 @@ class RegisterActivity : AppCompatActivity() {
         }
 
         binding.loginRedirectButton.setOnClickListener {
-            finish()  // Return to login screen
+            finish()
         }
     }
 
@@ -44,7 +44,7 @@ class RegisterActivity : AppCompatActivity() {
                     saveTokens(accessToken, refreshToken)
 
                     Toast.makeText(applicationContext, "Registration successful", Toast.LENGTH_SHORT).show()
-                    finish()  // Return to login after registration
+                    finish()
                 } else {
                     Toast.makeText(applicationContext, "Registration failed", Toast.LENGTH_SHORT).show()
                 }
