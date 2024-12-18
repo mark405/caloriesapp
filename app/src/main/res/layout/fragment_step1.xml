@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:gravity="center_horizontal">
+
+    <TextView
+        android:id="@+id/questionTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Яка ваша ціль?"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="8dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ми розрахуємо Ваші щоденні калорії згідно вашої цілі"
+        android:textSize="14sp"
+        android:layout_marginBottom="16dp" />
+
+    <!-- Goal Selection Buttons -->
+    <Button
+        android:id="@+id/loseWeightButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Втратити вагу"
+        android:layout_marginBottom="8dp" />
+
+    <Button
+        android:id="@+id/maintainWeightButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Підтримувати нинішню вагу"
+        android:layout_marginBottom="8dp" />
+
+    <Button
+        android:id="@+id/gainWeightButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Набрати вагу" />
+
+    <!-- Next Button -->
+    <Button
+        android:id="@+id/nextButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Далі"
+        android:layout_marginTop="24dp" />
+</LinearLayout>

@@ -45,15 +45,34 @@ class LoginActivity : AppCompatActivity() {
             override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
                 if (response.isSuccessful) {
                     val accessToken = response.body()?.accessToken
-                    val refreshToken = response.body()?.refreshToken
                     if (accessToken != null) {
                         saveAccessToken(applicationContext, accessToken)
                     }
 
+
+
                     Toast.makeText(applicationContext, "Login successful", Toast.LENGTH_SHORT).show()
-                    val intent = Intent(this@LoginActivity, MainActivity::class.java)
-                    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                    startActivity(intent)
+
+                    // Simulate check for userOptions
+                    val hasUserOptions = checkIfUserOptionsExist()
+
+                    try {
+                        if (hasUserOptions) {
+                            // Go to main activity
+                            val intent = Intent(this@LoginActivity, MainActivity::class.java)
+                            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                            startActivity(intent)
+                        } else {
+                            println("No user options")
+                            val intent = Intent(this@LoginActivity, UserOptionsActivity::class.java)
+                            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                            println(intent)
+                            startActivity(intent)
+                        }
+                    }catch (e: Error){
+                        println(e)
+                    }
+
                     finish()
                 } else {
                     println(response)
@@ -65,6 +84,11 @@ class LoginActivity : AppCompatActivity() {
                 Toast.makeText(applicationContext, "Error: ${t.message}", Toast.LENGTH_SHORT).show()
             }
         })
+    }
+
+    private fun checkIfUserOptionsExist(): Boolean {
+        val sharedPreferences = getSharedPreferences("AppPrefs", MODE_PRIVATE)
+        return sharedPreferences.contains("userOptions")
     }
 
 

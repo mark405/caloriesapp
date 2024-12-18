@@ -1,5 +1,6 @@
 package com.example.caloriesapp
 
+import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.widget.Toast
@@ -28,7 +29,8 @@ class RegisterActivity : AppCompatActivity() {
         }
 
         binding.loginRedirectButton.setOnClickListener {
-            finish()
+            val intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent)
         }
     }
 

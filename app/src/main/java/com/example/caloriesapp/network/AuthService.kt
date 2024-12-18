@@ -1,6 +1,7 @@
 package com.example.caloriesapp.network
 
 import retrofit2.Call
+import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.POST
 
@@ -12,6 +13,10 @@ interface AuthService {
 
     @POST("/auth/register")
     fun register(@Body user: User): Call<RegisterResponse>
+
+    @POST("/user/options")
+    suspend fun saveUserOptions(@Body options: Map<String, String>): Response<Void>
+
 }
 
 // Define response data classes
