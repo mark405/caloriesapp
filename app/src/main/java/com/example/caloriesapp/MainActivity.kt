@@ -19,14 +19,16 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        if (!isUserLoggedIn()) {
-            val intent = Intent(this, LoginActivity::class.java)
-            startActivity(intent)
-            finish()
-            return
-        }
+//        if (!isUserLoggedIn()) {
+//            val intent = Intent(this, LoginActivity::class.java)
+//            startActivity(intent)
+//            finish()
+//            return
+//        }
 
         binding = ActivityMainBinding.inflate(layoutInflater)
+        bindingReceipt = ActivityReceiptBinding.inflate(layoutInflater)
+
         setContentView(binding.root)
 
         setupRecyclerView()
