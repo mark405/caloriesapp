@@ -8,7 +8,7 @@ import android.widget.Button
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 
-class Step1Fragment : Fragment() {
+class GoalFragment : Fragment() {
 
     private var selectedGoal: String? = null
     override fun onCreateView(
@@ -41,7 +41,7 @@ class Step1Fragment : Fragment() {
             if (selectedGoal != null) {
                 (activity as UserOptionsActivity).selectedGoal = selectedGoal // Store the goal
                 val parentActivity = activity as? UserOptionsActivity
-                parentActivity?.viewPager?.currentItem = 1 // Move to Step2Fragment
+                parentActivity?.viewPager?.currentItem = 5
             } else {
                 Toast.makeText(requireContext(), "Виберіть ціль", Toast.LENGTH_SHORT).show()
             }

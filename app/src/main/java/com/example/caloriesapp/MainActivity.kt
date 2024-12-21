@@ -19,12 +19,12 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-//        if (!isUserLoggedIn()) {
-//            val intent = Intent(this, LoginActivity::class.java)
-//            startActivity(intent)
-//            finish()
-//            return
-//        }
+        if (!isUserLoggedIn()) {
+            val intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent)
+            finish()
+            return
+        }
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         bindingReceipt = ActivityReceiptBinding.inflate(layoutInflater)
@@ -61,6 +61,10 @@ class MainActivity : AppCompatActivity() {
             intent.putExtra("CATEGORY", "Desserts")
             startActivity(intent)
         }
+
+        binding.logoutButton.setOnClickListener {
+            logout()
+        }
     }
 
     private fun isUserLoggedIn(): Boolean {
@@ -68,6 +72,19 @@ class MainActivity : AppCompatActivity() {
         val token = sharedPreferences.getString("accessToken", null)
         return !token.isNullOrEmpty()
     }
+    private fun logout() {
+        // Clear the stored token
+        val sharedPreferences: SharedPreferences = getSharedPreferences("AppPrefs", MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
+        editor.remove("accessToken")  // Remove the access token
+        editor.apply()
+
+        // Redirect to LoginActivity
+        val intent = Intent(this, LoginActivity::class.java)
+        startActivity(intent)
+        finish()  // Finish current activity to remove it from back stack
+    }
+
     private fun setupRecyclerView() {
 
         dataList = ArrayList()

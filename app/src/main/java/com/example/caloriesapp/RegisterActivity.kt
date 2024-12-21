@@ -36,7 +36,7 @@ class RegisterActivity : AppCompatActivity() {
 
     private fun registerUser(email: String, password: String) {
         val user = User(email, password)
-        val call = RetrofitInstance.api.register(user)
+        val call = RetrofitInstance.authApi.register(user)
 
         call.enqueue(object : Callback<RegisterResponse> {
             override fun onResponse(call: Call<RegisterResponse>, response: Response<RegisterResponse>) {

@@ -39,13 +39,14 @@ class LoginActivity : AppCompatActivity() {
 
     private fun loginUser(email: String, password: String) {
         val user = User(email, password)
-        val call = RetrofitInstance.api.login(user)
+        val call = RetrofitInstance.authApi.login(user)
 
         call.enqueue(object : Callback<LoginResponse> {
             override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
                 if (response.isSuccessful) {
                     val accessToken = response.body()?.accessToken
                     if (accessToken != null) {
+                        println(accessToken)
                         saveAccessToken(applicationContext, accessToken)
                     }
 
@@ -53,8 +54,9 @@ class LoginActivity : AppCompatActivity() {
 
                     Toast.makeText(applicationContext, "Login successful", Toast.LENGTH_SHORT).show()
 
-                    // Simulate check for userOptions
                     val hasUserOptions = checkIfUserOptionsExist()
+
+                    println(hasUserOptions)
 
                     try {
                         if (hasUserOptions) {
