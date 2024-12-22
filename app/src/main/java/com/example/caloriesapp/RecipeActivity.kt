@@ -1,5 +1,6 @@
 package com.example.caloriesapp
 
+import android.annotation.SuppressLint
 import android.graphics.Color
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
@@ -13,30 +14,36 @@ import com.example.caloriesapp.databinding.ActivityRecipeBinding
 class RecipeActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityRecipeBinding
-    private var imgCrop = true
+    private var isImageCropped = true
 
+    @SuppressLint("SetTextI18n")
     @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityRecipeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        // Load image using Glide
         Glide.with(this).load(intent.getStringExtra("img")).into(binding.itemImg)
-        binding.tittle.text = intent.getStringExtra("tittle")
+
+        // Set title and description
+        binding.tittle.text = intent.getStringExtra("title")
         binding.stepData.text = intent.getStringExtra("des")
 
-        var ing = intent.getStringExtra("ing")?.split("\n".toRegex())?.dropLastWhile { it.isEmpty() }
-            ?.toTypedArray()
-        binding.time.text = ing?.get(0)
+        // Handle ingredients
+        val ingredients = intent.getStringExtra("ing")?.split(",")?.filter { it.isNotEmpty() }?.toTypedArray()
+        binding.time.text = intent.getStringExtra("des")
 
-        for (i in 1 until ing!!.size) {
-            binding.ingData.text =
-                """${binding.ingData.text} 🟢 ${ing[i]}
-                    
-                """.trimIndent()
+        // Display ingredients in the list
+        ingredients?.forEach { ingredient ->
+            binding.ingData.append("🟢 $ingredient\n")
         }
+
+        // Default background for step description
         binding.step.background = null
         binding.step.setTextColor(getColor(R.color.black))
+
+        // Toggle between ingredients and steps
         binding.step.setOnClickListener {
             binding.step.setBackgroundResource(R.drawable.btn_ing)
             binding.step.setTextColor(getColor(R.color.white))
@@ -55,25 +62,25 @@ class RecipeActivity : AppCompatActivity() {
             binding.stepScroll.visibility = View.GONE
         }
 
+        // Toggle image scale type
         binding.fullScreen.setOnClickListener {
-            if (imgCrop) {
+            if (isImageCropped) {
                 binding.itemImg.scaleType = ImageView.ScaleType.FIT_CENTER
                 Glide.with(this).load(intent.getStringExtra("img")).into(binding.itemImg)
                 binding.fullScreen.setColorFilter(Color.BLACK)
                 binding.shade.visibility = View.GONE
-                imgCrop = !imgCrop
             } else {
                 binding.itemImg.scaleType = ImageView.ScaleType.CENTER_CROP
                 Glide.with(this).load(intent.getStringExtra("img")).into(binding.itemImg)
                 binding.fullScreen.setColorFilter(null)
                 binding.shade.visibility = View.VISIBLE
-                imgCrop = !imgCrop
             }
+            isImageCropped = !isImageCropped
         }
 
+        // Back button functionality
         binding.backBtn.setOnClickListener {
             finish()
         }
-
     }
 }

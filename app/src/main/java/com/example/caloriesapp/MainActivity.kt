@@ -3,10 +3,16 @@ package com.example.caloriesapp
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.caloriesapp.databinding.ActivityMainBinding
 import com.example.caloriesapp.databinding.ActivityReceiptBinding
+import com.example.caloriesapp.network.RetrofitInstance
+import kotlinx.coroutines.DelicateCoroutinesApi
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
 
@@ -33,38 +39,44 @@ class MainActivity : AppCompatActivity() {
 
         setupRecyclerView()
 
+        binding.mainLayout.addView(bindingReceipt.root)
+
         bindingReceipt.search.setOnClickListener {
             startActivity(Intent(this, RecipeSearchActivity::class.java))
         }
 
         bindingReceipt.salad.setOnClickListener {
             var intent = Intent(this@MainActivity, CategoryActivity::class.java)
-            intent.putExtra("TITTLE", "Salad")
-            intent.putExtra("CATEGORY", "Salad")
+            intent.putExtra("TITTLE", "BREAKFAST")
+            intent.putExtra("CATEGORY", "Breakfast")
             startActivity(intent)
         }
         bindingReceipt.mainDish.setOnClickListener {
             var intent = Intent(this@MainActivity, CategoryActivity::class.java)
-            intent.putExtra("TITTLE", "Main Dish")
-            intent.putExtra("CATEGORY", "Dish")
+            intent.putExtra("TITTLE", "LUNCH")
+            intent.putExtra("CATEGORY", "Lunch")
             startActivity(intent)
         }
         bindingReceipt.drinks.setOnClickListener {
             var intent = Intent(this@MainActivity, CategoryActivity::class.java)
-            intent.putExtra("TITTLE", "Drinks")
-            intent.putExtra("CATEGORY", "Drinks")
+            intent.putExtra("TITTLE", "DINNER")
+            intent.putExtra("CATEGORY", "Dinner")
             startActivity(intent)
         }
         bindingReceipt.desserts.setOnClickListener {
             var intent = Intent(this@MainActivity, CategoryActivity::class.java)
-            intent.putExtra("TITTLE", "Desserts")
-            intent.putExtra("CATEGORY", "Desserts")
+            intent.putExtra("TITTLE", "SNACK")
+            intent.putExtra("CATEGORY", "Snack")
             startActivity(intent)
         }
 
-        binding.logoutButton.setOnClickListener {
-            logout()
+        bindingReceipt.rvPopular.setOnClickListener {
+            val intent = Intent(this, PopularActivity::class.java)
+            startActivity(intent)
         }
+
+
+
     }
 
     private fun isUserLoggedIn(): Boolean {
@@ -85,22 +97,33 @@ class MainActivity : AppCompatActivity() {
         finish()  // Finish current activity to remove it from back stack
     }
 
+    @OptIn(DelicateCoroutinesApi::class)
     private fun setupRecyclerView() {
-
         dataList = ArrayList()
-        bindingReceipt.rvPopular.layoutManager =
-            LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+        bindingReceipt.rvPopular.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
 
-        //TODO call python recipes api
-//        var recipes = emptyList()
-//
-//        for (i in recipes!!.indices) {
-//            if (recipes[i]!!.category.contains("Popular")) {
-//                dataList.add(recipes[i]!!)
-//            }
-//            rvAdapter = PopularAdapter(dataList, this)
-//            bindingReceipt.rvPopular.adapter = rvAdapter
-//        }
+        GlobalScope.launch(Dispatchers.Main) {
+            try {
+                val response = RetrofitInstance.baseApi.getRecipes()
+                if (response.isSuccessful) {
+                    val recipes = response.body() ?: emptyList()
+                    if (recipes.isNotEmpty()) {
+                        dataList.addAll(recipes)
+                        rvAdapter = PopularAdapter(dataList, this@MainActivity)
+                        bindingReceipt.rvPopular.adapter = rvAdapter
+                        rvAdapter.notifyDataSetChanged()
+                    } else {
+                        Toast.makeText(this@MainActivity, "No recipes found", Toast.LENGTH_SHORT).show()
+                    }
+                } else {
+                    Toast.makeText(this@MainActivity, "Failed to load recipes: ${response.message()}", Toast.LENGTH_SHORT).show()
+                }
+            } catch (e: Exception) {
+                Toast.makeText(this@MainActivity, "Error occurred: ${e.localizedMessage}", Toast.LENGTH_SHORT).show()
+            }
+        }
+
     }
+
 
 }
