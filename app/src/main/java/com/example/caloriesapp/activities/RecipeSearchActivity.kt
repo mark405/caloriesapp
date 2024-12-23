@@ -1,4 +1,4 @@
-package com.example.caloriesapp
+package com.example.caloriesapp.activities
 
 import android.annotation.SuppressLint
 import android.os.Bundle
@@ -7,7 +7,9 @@ import android.text.TextWatcher
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.caloriesapp.adapters.RecipeSearchAdapter
 import com.example.caloriesapp.databinding.ActivitySearchBinding
+import com.example.caloriesapp.models.Recipe
 import com.example.caloriesapp.network.RetrofitInstance
 import kotlinx.coroutines.*
 

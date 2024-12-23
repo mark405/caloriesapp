@@ -1,5 +1,5 @@
 
-package com.example.caloriesapp
+package com.example.caloriesapp.models
 
 data class Recipe(
     val uuid: String,

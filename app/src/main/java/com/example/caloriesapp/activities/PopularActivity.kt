@@ -1,12 +1,13 @@
-package com.example.caloriesapp
+package com.example.caloriesapp.activities
 
-import PopularAdapter
+import com.example.caloriesapp.adapters.PopularAdapter
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.caloriesapp.databinding.ActivityPopularBinding
+import com.example.caloriesapp.models.Recipe
 import com.example.caloriesapp.network.RetrofitInstance
 import kotlinx.coroutines.launch
 

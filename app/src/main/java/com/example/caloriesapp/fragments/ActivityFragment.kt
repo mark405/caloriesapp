@@ -1,4 +1,4 @@
-package com.example.caloriesapp
+package com.example.caloriesapp.fragments
 
 import android.content.Context.MODE_PRIVATE
 import android.content.Intent
@@ -15,7 +15,10 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import android.content.Context
+import com.example.caloriesapp.activities.MainActivity
+import com.example.caloriesapp.R
+import com.example.caloriesapp.activities.DiaryActivity
+import com.example.caloriesapp.activities.UserOptionsActivity
 
 class ActivityFragment : Fragment() {
 
@@ -103,7 +106,7 @@ class ActivityFragment : Fragment() {
                 }
             }
         }
-        val intent = Intent(requireContext(), MainActivity::class.java)
+        val intent = Intent(requireContext(), DiaryActivity::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         startActivity(intent)
     }
@@ -114,11 +117,9 @@ class ActivityFragment : Fragment() {
     }
 
     private fun saveUserOptions(key: String, value: Boolean) {
-        val sharedPreferences: SharedPreferences = context!!.getSharedPreferences("AppPrefs", MODE_PRIVATE)
+        val sharedPreferences: SharedPreferences = requireContext().getSharedPreferences("AppPrefs", MODE_PRIVATE)
         val editor = sharedPreferences.edit()
         editor.putBoolean(key, value)
         editor.apply()
     }
-
-
 }

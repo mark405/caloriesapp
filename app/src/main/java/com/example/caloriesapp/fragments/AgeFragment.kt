@@ -1,3 +1,5 @@
+package com.example.caloriesapp.fragments
+
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -7,7 +9,7 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.caloriesapp.R
-import com.example.caloriesapp.UserOptionsActivity
+import com.example.caloriesapp.activities.UserOptionsActivity
 
 class AgeFragment : Fragment() {
 
@@ -25,7 +27,7 @@ class AgeFragment : Fragment() {
             if (age.isNotEmpty()) {
                 val parentActivity = activity as? UserOptionsActivity
                 parentActivity?.userAge = age
-                // Navigate to GenderFragment
+                // Navigate to com.example.caloriesapp.fragments.GenderFragment
                 parentActivity?.viewPager?.currentItem = 2
             } else {
                 Toast.makeText(requireContext(), "Please enter your age", Toast.LENGTH_SHORT).show()

@@ -11,7 +11,7 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.example.caloriesapp.LoginActivity
+import com.example.caloriesapp.activities.LoginActivity
 import com.example.caloriesapp.R
 import com.example.caloriesapp.databinding.FragmentHomeBinding
 

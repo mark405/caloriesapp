@@ -1,6 +1,6 @@
-package com.example.caloriesapp
+package com.example.caloriesapp.activities
 
-import PopularAdapter
+import com.example.caloriesapp.adapters.PopularAdapter
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.caloriesapp.databinding.ActivityMainBinding
 import com.example.caloriesapp.databinding.ActivityReceiptBinding
+import com.example.caloriesapp.models.Recipe
 import com.example.caloriesapp.network.RetrofitInstance
 import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.Dispatchers

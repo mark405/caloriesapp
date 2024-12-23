@@ -1,4 +1,4 @@
-package com.example.caloriesapp
+package com.example.caloriesapp.activities
 
 import SharedPreferencesManager.saveAccessToken
 import android.content.Intent

@@ -1,22 +1,30 @@
-package com.example.caloriesapp
+package com.example.caloriesapp.adapters
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
-import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.caloriesapp.databinding.CategoryRvBinding
+import com.example.caloriesapp.activities.RecipeActivity
+import com.example.caloriesapp.databinding.SearchRvBinding
+import com.example.caloriesapp.models.Recipe
 
-class CategoryAdapter(var dataList: ArrayList<Recipe>, var context: Context) :
-    RecyclerView.Adapter<CategoryAdapter.ViewHolder>() {
+class RecipeSearchAdapter(var dataList: ArrayList<Recipe>, var context: Context) :
+    RecyclerView.Adapter<RecipeSearchAdapter.ViewHolder>() {
 
-    inner class ViewHolder(var binding: CategoryRvBinding) : RecyclerView.ViewHolder(binding.root)
+    inner class ViewHolder(var binding: SearchRvBinding) : RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        var binding = CategoryRvBinding.inflate(LayoutInflater.from(context), parent, false)
-        return ViewHolder(binding)
+        val view = SearchRvBinding.inflate(LayoutInflater.from(context), parent, false)
+        return ViewHolder(view)
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    fun filterList(filterList: ArrayList<Recipe>) {
+        dataList = filterList
+        notifyDataSetChanged()
     }
 
     override fun getItemCount(): Int {
@@ -24,12 +32,16 @@ class CategoryAdapter(var dataList: ArrayList<Recipe>, var context: Context) :
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        Glide.with(context).load(dataList[position].coverImage).into(holder.binding.img)
-        holder.binding.tittle.text = dataList.get(position).title
+        // Load image using Glide. You might need to adapt this if `mealType` doesn't represent an image URL.
+        Glide.with(context)
+            .load(dataList[position].coverImage) // Assuming mealType holds an image URL or identifier.
+            .into(holder.binding.searchImg)
 
-        holder.binding.time.text = dataList[position].cookingTime
+        // Set recipe title to the TextView
+        holder.binding.searchTxt.text = dataList[position].title
 
-        holder.binding.next.setOnClickListener {
+        // Set an onClickListener for item clicks
+        holder.itemView.setOnClickListener {
             var intent = Intent(context, RecipeActivity::class.java)
             intent.putExtra("img", dataList[position].coverImage)  // Recipe title
             intent.putExtra("title", dataList[position].title)  // Recipe title
@@ -43,7 +55,5 @@ class CategoryAdapter(var dataList: ArrayList<Recipe>, var context: Context) :
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
             context.startActivity(intent)
         }
-
     }
-
 }

@@ -1,4 +1,4 @@
-package com.example.caloriesapp
+package com.example.caloriesapp.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,6 +7,8 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import com.example.caloriesapp.R
+import com.example.caloriesapp.activities.UserOptionsActivity
 
 class GoalFragment : Fragment() {
 

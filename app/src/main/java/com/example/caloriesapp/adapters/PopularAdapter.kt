@@ -1,11 +1,13 @@
+package com.example.caloriesapp.adapters
+
 import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater.*
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.caloriesapp.Recipe
-import com.example.caloriesapp.RecipeActivity
+import com.example.caloriesapp.models.Recipe
+import com.example.caloriesapp.activities.RecipeActivity
 import com.example.caloriesapp.databinding.PopularRvItemBinding
 
 class PopularAdapter(private val recipes: List<Recipe>, private val context: Context) :

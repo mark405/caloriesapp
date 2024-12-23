@@ -1,3 +1,5 @@
+package com.example.caloriesapp.fragments
+
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -5,7 +7,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import androidx.fragment.app.Fragment
 import com.example.caloriesapp.R
-import com.example.caloriesapp.UserOptionsActivity
+import com.example.caloriesapp.activities.UserOptionsActivity
 
 class GenderFragment : Fragment() {
 

@@ -1,10 +1,12 @@
-package com.example.caloriesapp
+package com.example.caloriesapp.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.caloriesapp.adapters.CategoryAdapter
 import com.example.caloriesapp.databinding.ActivityCategoryBinding
+import com.example.caloriesapp.models.Recipe
 import com.example.caloriesapp.network.RetrofitInstance
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope

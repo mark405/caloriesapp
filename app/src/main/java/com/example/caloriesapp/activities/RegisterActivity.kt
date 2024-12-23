@@ -1,4 +1,4 @@
-package com.example.caloriesapp
+package com.example.caloriesapp.activities
 
 import android.content.Intent
 import android.content.SharedPreferences

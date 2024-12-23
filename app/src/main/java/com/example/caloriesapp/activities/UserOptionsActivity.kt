@@ -1,9 +1,10 @@
-package com.example.caloriesapp
+package com.example.caloriesapp.activities
 
-import UserOptionsAdapter
+import com.example.caloriesapp.adapters.UserOptionsAdapter
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager2.widget.ViewPager2
+import com.example.caloriesapp.R
 
 class UserOptionsActivity : AppCompatActivity() {
 

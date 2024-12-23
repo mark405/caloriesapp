@@ -1,15 +1,15 @@
-package com.example.caloriesapp
+package com.example.caloriesapp.activities
 
 import android.annotation.SuppressLint
 import android.graphics.Color
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.annotation.RequiresApi
 import com.bumptech.glide.Glide
+import com.example.caloriesapp.R
 
 class RecipeActivity : AppCompatActivity() {
 
