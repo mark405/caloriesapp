@@ -1,5 +1,6 @@
 package com.example.caloriesapp
 
+import PopularAdapter
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
@@ -38,7 +39,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         setupRecyclerView()
-
         binding.mainLayout.addView(bindingReceipt.root)
 
         bindingReceipt.search.setOnClickListener {
@@ -70,13 +70,6 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        bindingReceipt.rvPopular.setOnClickListener {
-            val intent = Intent(this, PopularActivity::class.java)
-            startActivity(intent)
-        }
-
-
-
     }
 
     private fun isUserLoggedIn(): Boolean {
@@ -100,17 +93,19 @@ class MainActivity : AppCompatActivity() {
     @OptIn(DelicateCoroutinesApi::class)
     private fun setupRecyclerView() {
         dataList = ArrayList()
-        bindingReceipt.rvPopular.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+        binding.rvPopular.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
 
         GlobalScope.launch(Dispatchers.Main) {
             try {
                 val response = RetrofitInstance.baseApi.getRecipes()
                 if (response.isSuccessful) {
                     val recipes = response.body() ?: emptyList()
-                    if (recipes.isNotEmpty()) {
-                        dataList.addAll(recipes)
+                    val popularRecipes = recipes.filter { it.isPopular }
+
+                    if (popularRecipes.isNotEmpty()) {
+                        dataList.addAll(popularRecipes)
                         rvAdapter = PopularAdapter(dataList, this@MainActivity)
-                        bindingReceipt.rvPopular.adapter = rvAdapter
+                        binding.rvPopular.adapter = rvAdapter
                         rvAdapter.notifyDataSetChanged()
                     } else {
                         Toast.makeText(this@MainActivity, "No recipes found", Toast.LENGTH_SHORT).show()

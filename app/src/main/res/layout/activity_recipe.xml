@@ -1,176 +1,146 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".RecipeActivity">
 
-    <ImageView
-        android:id="@+id/item_img"
-        android:layout_width="0dp"
-        android:layout_height="250dp"
-        android:background="#F6F6F6"
-        android:hapticFeedbackEnabled="true"
-        android:scaleType="centerCrop"
-        android:src="@drawable/pizza_sample"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageView
-        android:id="@+id/shade"
-        android:layout_width="0dp"
-        android:layout_height="100dp"
-        android:src="@drawable/image_btm_overlay"
-        app:layout_constraintBottom_toBottomOf="@+id/item_img"
-        app:layout_constraintEnd_toEndOf="@+id/item_img"
-        app:layout_constraintStart_toStartOf="@+id/item_img" />
-
-    <ImageView
-        android:id="@+id/back_btn"
-        android:layout_width="45dp"
-        android:layout_height="45dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/card_back_btn"
-        android:clickable="true"
-        android:foregroundGravity="center"
-        android:hapticFeedbackEnabled="true"
-        android:padding="4dp"
-        android:src="@drawable/back_icon"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/item_img" />
-
-    <ImageView
-        android:id="@+id/full_screen"
-        android:layout_width="45dp"
-        android:layout_height="45dp"
-        android:layout_marginEnd="20dp"
-        android:clickable="true"
-        android:foregroundGravity="center"
-        android:hapticFeedbackEnabled="true"
-        android:padding="4dp"
-        android:src="@drawable/full_size_ic"
-        app:layout_constraintBottom_toBottomOf="@+id/back_btn"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/back_btn"
-        app:tint="@color/white" />
-
-    <RelativeLayout
-        android:id="@+id/relativeLayout"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="479dp"
-        android:layout_marginTop="-20dp"
-        android:background="@drawable/card_recipe"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/item_img">
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
 
-        <TextView
-            android:id="@+id/tittle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="22dp"
-            android:layout_marginEnd="45dp"
-            android:fontFamily="@font/poppins"
-            android:text="Тут приклад заголовку"
-            android:textColor="@color/black"
-            android:textSize="20sp" />
-
+        <!-- Back Button -->
         <ImageView
-            android:id="@+id/clock"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_below="@id/tittle"
-            android:layout_alignParentStart="true"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="5dp"
-            android:src="@drawable/clock_icon"
-            app:tint="#019267" />
+            android:id="@+id/back_btn"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/back_icon"
+            android:contentDescription="Back button"
+            android:layout_gravity="start"
+            android:layout_marginBottom="8dp"
+            android:background="?attr/selectableItemBackgroundBorderless" />
 
+        <!-- Image at the top -->
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_marginBottom="16dp">
+
+            <ImageView
+                android:id="@+id/recipe_image"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:src="@drawable/image_btm_overlay"
+                android:contentDescription="Recipe Image" />
+
+            <ImageView
+                android:id="@+id/full_screen_button"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="end|bottom"
+                android:layout_margin="8dp"
+                android:src="@drawable/full_size_ic"
+                android:contentDescription="Full screen toggle"
+                android:background="?attr/selectableItemBackgroundBorderless" />
+        </FrameLayout>
+
+        <!-- Title -->
         <TextView
-            android:id="@+id/time"
-            android:layout_width="wrap_content"
-            android:layout_height="24dp"
-            android:layout_below="@+id/tittle"
-            android:layout_marginStart="6dp"
-            android:layout_marginTop="3dp"
-            android:layout_toEndOf="@+id/clock"
-            android:gravity="center_vertical"
-            android:text="30 хвилин" />
-
-        <Button
-            android:id="@+id/ing"
-            android:layout_width="150dp"
-            android:layout_height="42dp"
-            android:layout_below="@id/tittle"
-            android:layout_alignParentStart="true"
-            android:layout_marginStart="34dp"
-            android:layout_marginTop="40dp"
-            android:background="@drawable/btn_ing"
-            android:fontFamily="@font/poppins"
-            android:paddingLeft="20sp"
-            android:paddingRight="20sp"
-            android:text="Інгрідієнти" />
-
-        <ScrollView
-            android:id="@+id/ing_scroll"
+            android:id="@+id/recipe_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/ing"
-            android:layout_alignParentStart="true"
-            android:padding="10sp">
+            android:text="Pancakes"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:layout_marginBottom="8dp" />
 
-            <TextView
-                android:id="@+id/ing_data"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:lineSpacingExtra="10dp"
-                android:text=""
-                android:textColor="@color/black"
-                android:textSize="15sp" />
-
-        </ScrollView>
-
-        <Button
-            android:id="@+id/step"
-            android:layout_width="150dp"
-            android:layout_height="42dp"
-            android:layout_below="@id/tittle"
-            android:layout_alignParentEnd="true"
-            android:layout_marginTop="40dp"
-            android:layout_marginEnd="34dp"
-            android:background="@drawable/btn_ing"
-            android:fontFamily="@font/poppins"
-            android:paddingLeft="20sp"
-            android:paddingRight="20sp"
-            android:text="Кроки" />
-
-        <ScrollView
-            android:id="@+id/step_scroll"
+        <!-- Time -->
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/step"
-            android:layout_alignParentStart="true"
-            android:padding="10sp"
-            android:visibility="gone">
+            android:orientation="horizontal"
+            android:layout_marginBottom="16dp"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/clock_icon"
+                android:contentDescription="Clock Icon"
+                android:layout_marginEnd="8dp" />
 
             <TextView
-                android:id="@+id/step_data"
-                android:layout_width="match_parent"
+                android:id="@+id/recipe_time"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:lineSpacingExtra="10dp"
-                android:text=""
+                android:text="60 min"
+                android:textSize="16sp"
+                android:textColor="@color/black" />
+        </LinearLayout>
+
+        <!-- Nutritional Information -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="16dp"
+            android:weightSum="4">
+
+            <TextView
+                android:id="@+id/recipe_calories"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="300 Calories"
+                android:textSize="14sp"
                 android:textColor="@color/black"
-                android:textSize="15sp" />
+                android:gravity="center" />
 
-        </ScrollView>
+            <TextView
+                android:id="@+id/recipe_proteins"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="20g Proteins"
+                android:textSize="14sp"
+                android:textColor="@color/black"
+                android:gravity="center" />
 
-    </RelativeLayout>
+            <TextView
+                android:id="@+id/recipe_fats"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="15g Fats"
+                android:textSize="14sp"
+                android:textColor="@color/black"
+                android:gravity="center" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+            <TextView
+                android:id="@+id/recipe_carbs"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="15g Carbs"
+                android:textSize="14sp"
+                android:textColor="@color/black"
+                android:gravity="center" />
+        </LinearLayout>
+
+        <!-- Recipe Description -->
+        <TextView
+            android:id="@+id/recipe_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fringilla mauris est lorem et amet. Vestibulum tristique."
+            android:textSize="16sp"
+            android:textColor="@color/black"
+            android:lineSpacingExtra="4dp" />
+    </LinearLayout>
+</ScrollView>

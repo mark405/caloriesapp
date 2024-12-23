@@ -12,7 +12,6 @@
         android:id="@+id/gifImageView"
         android:layout_width="228dp"
         android:layout_height="284dp"
-        android:background="@drawable/logo"
         app:layout_constraintBottom_toTopOf="@id/rv_popular"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

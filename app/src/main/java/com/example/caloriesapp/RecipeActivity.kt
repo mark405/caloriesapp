@@ -7,79 +7,63 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.annotation.RequiresApi
 import com.bumptech.glide.Glide
-import com.example.caloriesapp.databinding.ActivityRecipeBinding
 
 class RecipeActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityRecipeBinding
     private var isImageCropped = true
 
     @SuppressLint("SetTextI18n")
     @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityRecipeBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+        setContentView(R.layout.activity_recipe)
+
+        // Initialize views
+        val recipeImage: ImageView = findViewById(R.id.recipe_image)
+        val recipeTitle: TextView = findViewById(R.id.recipe_title)
+        val recipeTime: TextView = findViewById(R.id.recipe_time)
+        val recipeCalories: TextView = findViewById(R.id.recipe_calories)
+        val recipeProteins: TextView = findViewById(R.id.recipe_proteins)
+        val recipeFats: TextView = findViewById(R.id.recipe_fats)
+        val recipeCarbs: TextView = findViewById(R.id.recipe_carbs)
+        val recipeDescription: TextView = findViewById(R.id.recipe_description)
+//        val fullScreenToggle: ImageView = findViewById(R.id.button) // Add this button in your XML
+//        val backButton: ImageView = findViewById(R.id.back_btn) // Add this button in your XML
 
         // Load image using Glide
-        Glide.with(this).load(intent.getStringExtra("img")).into(binding.itemImg)
+        Glide.with(this).load(intent.getStringExtra("img")).into(recipeImage)
 
         // Set title and description
-        binding.tittle.text = intent.getStringExtra("title")
-        binding.stepData.text = intent.getStringExtra("des")
+        recipeTitle.text = intent.getStringExtra("title")
+        recipeDescription.text = intent.getStringExtra("des")
 
-        // Handle ingredients
-        val ingredients = intent.getStringExtra("ing")?.split(",")?.filter { it.isNotEmpty() }?.toTypedArray()
-        binding.time.text = intent.getStringExtra("des")
-
-        // Display ingredients in the list
-        ingredients?.forEach { ingredient ->
-            binding.ingData.append("🟢 $ingredient\n")
-        }
-
-        // Default background for step description
-        binding.step.background = null
-        binding.step.setTextColor(getColor(R.color.black))
-
-        // Toggle between ingredients and steps
-        binding.step.setOnClickListener {
-            binding.step.setBackgroundResource(R.drawable.btn_ing)
-            binding.step.setTextColor(getColor(R.color.white))
-            binding.ing.setTextColor(getColor(R.color.black))
-            binding.ing.background = null
-            binding.stepScroll.visibility = View.VISIBLE
-            binding.ingScroll.visibility = View.GONE
-        }
-
-        binding.ing.setOnClickListener {
-            binding.ing.setBackgroundResource(R.drawable.btn_ing)
-            binding.ing.setTextColor(getColor(R.color.white))
-            binding.step.setTextColor(getColor(R.color.black))
-            binding.step.background = null
-            binding.ingScroll.visibility = View.VISIBLE
-            binding.stepScroll.visibility = View.GONE
-        }
-
+        // Set time and nutritional information
+        recipeTime.text = intent.getStringExtra("time")
+        recipeCalories.text = "${intent.getIntExtra("calories", 0)} Calories"
+        recipeProteins.text = "${intent.getIntExtra("proteins", 0)}g Proteins"
+        recipeFats.text = "${intent.getIntExtra("fats", 0)}g Fats"
+        recipeCarbs.text = "${intent.getIntExtra("carbs", 0)}g Carbs"
+        val fullScreenToggle: ImageView = findViewById(R.id.full_screen_button)
+        val backButton: ImageView = findViewById(R.id.back_btn) // Add this button in your XML
         // Toggle image scale type
-        binding.fullScreen.setOnClickListener {
+        fullScreenToggle.setOnClickListener {
             if (isImageCropped) {
-                binding.itemImg.scaleType = ImageView.ScaleType.FIT_CENTER
-                Glide.with(this).load(intent.getStringExtra("img")).into(binding.itemImg)
-                binding.fullScreen.setColorFilter(Color.BLACK)
-                binding.shade.visibility = View.GONE
+                recipeImage.scaleType = ImageView.ScaleType.FIT_CENTER
+                Glide.with(this).load(intent.getStringExtra("img")).into(recipeImage)
+                fullScreenToggle.setColorFilter(Color.BLACK)
             } else {
-                binding.itemImg.scaleType = ImageView.ScaleType.CENTER_CROP
-                Glide.with(this).load(intent.getStringExtra("img")).into(binding.itemImg)
-                binding.fullScreen.setColorFilter(null)
-                binding.shade.visibility = View.VISIBLE
+                recipeImage.scaleType = ImageView.ScaleType.CENTER_CROP
+                Glide.with(this).load(intent.getStringExtra("img")).into(recipeImage)
+                fullScreenToggle.setColorFilter(null)
             }
             isImageCropped = !isImageCropped
         }
 
         // Back button functionality
-        binding.backBtn.setOnClickListener {
+        backButton.setOnClickListener {
             finish()
         }
     }

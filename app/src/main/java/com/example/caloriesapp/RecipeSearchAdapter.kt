@@ -41,18 +41,16 @@ class RecipeSearchAdapter(var dataList: ArrayList<Recipe>, var context: Context)
 
         // Set an onClickListener for item clicks
         holder.itemView.setOnClickListener {
-            val intent = Intent(context, RecipeActivity::class.java)
-
-            // Pass the relevant data fields to the new activity
+            var intent = Intent(context, RecipeActivity::class.java)
             intent.putExtra("img", dataList[position].coverImage)  // Recipe title
             intent.putExtra("title", dataList[position].title)  // Recipe title
-            intent.putExtra("ing", TextUtils.join(",", dataList[position].ingredients))  // Recipe title
-            intent.putExtra("des", dataList[position].cookingTime)  // Meal type
-            intent.putExtra("calories", dataList[position].calories)  // Calories
-            intent.putExtra("fats", dataList[position].fats)  // Fats
-            intent.putExtra("carbs", dataList[position].carbs)  // Carbs
-
-            // Set flag to ensure new activity starts in a clean task
+            intent.putExtra("time", dataList[position].cookingTime)  // Recipe title
+            intent.putExtra("ing", dataList[position].description)  // Recipe title
+            intent.putExtra("des", dataList[position].description)  // Meal type
+            intent.putExtra("calories", dataList[position].calories.toInt())  // Calories
+            intent.putExtra("fats", dataList[position].fats.toInt())  // Fats
+            intent.putExtra("proteins", dataList[position].proteins.toInt())  // Fats
+            intent.putExtra("carbs", dataList[position].carbs.toInt())  // Carbs
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
             context.startActivity(intent)
         }

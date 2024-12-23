@@ -1,5 +1,6 @@
 package com.example.caloriesapp
 
+import PopularAdapter
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity

@@ -8,7 +8,7 @@ data class Recipe(
     val calories: Long,
     val carbs: Long,
     val title: String,
-    val ingredients: Array<String>,
+    val description: String,
     val cookingTime: String,
     val isPopular: Boolean,
     val coverImage: String,
