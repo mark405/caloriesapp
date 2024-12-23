@@ -5,6 +5,8 @@ import android.graphics.Color
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Html
+import android.text.Spanned
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.annotation.RequiresApi
@@ -29,8 +31,8 @@ class RecipeActivity : AppCompatActivity() {
         val recipeProteins: TextView = findViewById(R.id.recipe_proteins)
         val recipeFats: TextView = findViewById(R.id.recipe_fats)
         val recipeCarbs: TextView = findViewById(R.id.recipe_carbs)
-        val recipeDescription: TextView = findViewById(R.id.recipe_description)
-//        val fullScreenToggle: ImageView = findViewById(R.id.button) // Add this button in your XML
+        val recipeDescription = findViewById<TextView>(R.id.recipe_description)
+        //        val fullScreenToggle: ImageView = findViewById(R.id.button) // Add this button in your XML
 //        val backButton: ImageView = findViewById(R.id.back_btn) // Add this button in your XML
 
         // Load image using Glide
@@ -40,12 +42,20 @@ class RecipeActivity : AppCompatActivity() {
         recipeTitle.text = intent.getStringExtra("title")
         recipeDescription.text = intent.getStringExtra("des")
 
+        val spanned: Spanned = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            Html.fromHtml(intent.getStringExtra("des"), Html.FROM_HTML_MODE_LEGACY)
+        } else {
+            Html.fromHtml(intent.getStringExtra("des"))
+        }
+
+        recipeDescription.text = spanned
+
         // Set time and nutritional information
-        recipeTime.text = intent.getStringExtra("time")
         recipeCalories.text = "${intent.getIntExtra("calories", 0)} Calories"
         recipeProteins.text = "${intent.getIntExtra("proteins", 0)}g Proteins"
         recipeFats.text = "${intent.getIntExtra("fats", 0)}g Fats"
         recipeCarbs.text = "${intent.getIntExtra("carbs", 0)}g Carbs"
+        recipeTime.text = "${intent.getStringExtra("time")}"
         val fullScreenToggle: ImageView = findViewById(R.id.full_screen_button)
         val backButton: ImageView = findViewById(R.id.back_btn) // Add this button in your XML
         // Toggle image scale type

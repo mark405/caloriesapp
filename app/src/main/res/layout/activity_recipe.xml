@@ -22,13 +22,15 @@
             android:contentDescription="Back button"
             android:layout_gravity="start"
             android:layout_marginBottom="8dp"
-            android:background="?attr/selectableItemBackgroundBorderless" />
+            android:background="?attr/selectableItemBackgroundBorderless"
+            app:tint="#464B46" />
 
         <!-- Image at the top -->
         <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:layout_marginBottom="16dp">
+            android:layout_height="250dp"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/gradient_background">
 
             <ImageView
                 android:id="@+id/recipe_image"
@@ -46,7 +48,8 @@
                 android:layout_margin="8dp"
                 android:src="@drawable/full_size_ic"
                 android:contentDescription="Full screen toggle"
-                android:background="?attr/selectableItemBackgroundBorderless" />
+                android:background="?attr/selectableItemBackgroundBorderless"
+                app:tint="@color/white" />
         </FrameLayout>
 
         <!-- Title -->
@@ -55,10 +58,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Pancakes"
-            android:textSize="24sp"
+            android:textSize="28sp"
             android:textStyle="bold"
             android:textColor="@color/black"
-            android:layout_marginBottom="8dp" />
+            android:layout_marginBottom="12dp"/>
 
         <!-- Time -->
         <LinearLayout
@@ -69,11 +72,12 @@
             android:gravity="center_vertical">
 
             <ImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
                 android:src="@drawable/clock_icon"
                 android:contentDescription="Clock Icon"
-                android:layout_marginEnd="8dp" />
+                android:layout_marginEnd="8dp"
+                app:tint="@color/green" />
 
             <TextView
                 android:id="@+id/recipe_time"
@@ -81,66 +85,76 @@
                 android:layout_height="wrap_content"
                 android:text="60 min"
                 android:textSize="16sp"
-                android:textColor="@color/black" />
+                android:textColor="@color/black"/>
         </LinearLayout>
 
         <!-- Nutritional Information -->
-        <LinearLayout
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
             android:layout_marginBottom="16dp"
-            android:weightSum="4">
+            app:cardElevation="4dp"
+            app:cardCornerRadius="12dp"
+            android:backgroundTint="@color/white">
 
-            <TextView
-                android:id="@+id/recipe_calories"
-                android:layout_width="0dp"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="300 Calories"
-                android:textSize="14sp"
-                android:textColor="@color/black"
-                android:gravity="center" />
+                android:orientation="horizontal"
+                android:padding="8dp"
+                android:weightSum="4">
 
-            <TextView
-                android:id="@+id/recipe_proteins"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="20g Proteins"
-                android:textSize="14sp"
-                android:textColor="@color/black"
-                android:gravity="center" />
+                <TextView
+                    android:id="@+id/recipe_calories"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="300 Calories"
+                    android:textSize="14sp"
+                    android:textColor="@color/black"
+                    android:gravity="center"/>
 
-            <TextView
-                android:id="@+id/recipe_fats"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="15g Fats"
-                android:textSize="14sp"
-                android:textColor="@color/black"
-                android:gravity="center" />
+                <TextView
+                    android:id="@+id/recipe_proteins"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="20g Proteins"
+                    android:textSize="14sp"
+                    android:textColor="@color/black"
+                    android:gravity="center"/>
 
-            <TextView
-                android:id="@+id/recipe_carbs"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="15g Carbs"
-                android:textSize="14sp"
-                android:textColor="@color/black"
-                android:gravity="center" />
-        </LinearLayout>
+                <TextView
+                    android:id="@+id/recipe_fats"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="15g Fats"
+                    android:textSize="14sp"
+                    android:textColor="@color/black"
+                    android:gravity="center"/>
+
+                <TextView
+                    android:id="@+id/recipe_carbs"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="15g Carbs"
+                    android:textSize="14sp"
+                    android:textColor="@color/black"
+                    android:gravity="center"/>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
 
         <!-- Recipe Description -->
         <TextView
             android:id="@+id/recipe_description"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fringilla mauris est lorem et amet. Vestibulum tristique."
-            android:textSize="16sp"
+            android:padding="16dp"
             android:textColor="@color/black"
-            android:lineSpacingExtra="4dp" />
+            android:textSize="16sp"
+            android:lineSpacingExtra="8dp" />
+
     </LinearLayout>
 </ScrollView>
