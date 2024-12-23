@@ -47,25 +47,25 @@ class MainActivity : AppCompatActivity() {
 
         bindingReceipt.salad.setOnClickListener {
             var intent = Intent(this@MainActivity, CategoryActivity::class.java)
-            intent.putExtra("TITTLE", "BREAKFAST")
+            intent.putExtra("TITTLE", "Сніданок")
             intent.putExtra("CATEGORY", "Breakfast")
             startActivity(intent)
         }
         bindingReceipt.mainDish.setOnClickListener {
             var intent = Intent(this@MainActivity, CategoryActivity::class.java)
-            intent.putExtra("TITTLE", "LUNCH")
+            intent.putExtra("TITTLE", "Обід")
             intent.putExtra("CATEGORY", "Lunch")
             startActivity(intent)
         }
         bindingReceipt.drinks.setOnClickListener {
             var intent = Intent(this@MainActivity, CategoryActivity::class.java)
-            intent.putExtra("TITTLE", "DINNER")
+            intent.putExtra("TITTLE", "Вечеря")
             intent.putExtra("CATEGORY", "Dinner")
             startActivity(intent)
         }
         bindingReceipt.desserts.setOnClickListener {
             var intent = Intent(this@MainActivity, CategoryActivity::class.java)
-            intent.putExtra("TITTLE", "SNACK")
+            intent.putExtra("TITTLE", "Снеки")
             intent.putExtra("CATEGORY", "Snack")
             startActivity(intent)
         }
