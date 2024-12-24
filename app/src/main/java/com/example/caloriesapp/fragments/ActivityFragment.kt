@@ -38,22 +38,22 @@ class ActivityFragment : Fragment() {
 
         // Button click listeners
         inactiveButton.setOnClickListener {
-            selectedActivity = "Неактивний"
+            selectedActivity = "sedentary"
             highlightSelectedButton(inactiveButton, lowActivityButton, activeButton, veryActiveButton)
         }
 
         lowActivityButton.setOnClickListener {
-            selectedActivity = "Низька активність"
+            selectedActivity = "low_active"
             highlightSelectedButton(lowActivityButton, inactiveButton, activeButton, veryActiveButton)
         }
 
         activeButton.setOnClickListener {
-            selectedActivity = "Активний"
+            selectedActivity = "active"
             highlightSelectedButton(activeButton, inactiveButton, lowActivityButton, veryActiveButton)
         }
 
         veryActiveButton.setOnClickListener {
-            selectedActivity = "Дуже активний"
+            selectedActivity = "very_active"
             highlightSelectedButton(veryActiveButton, inactiveButton, lowActivityButton, activeButton)
         }
 
@@ -80,7 +80,7 @@ class ActivityFragment : Fragment() {
             "height" to height,
             "age" to age,
             "gender" to gender,
-            "weight" to weight
+            "weight" to weight,
         )
 
         println(userData)
