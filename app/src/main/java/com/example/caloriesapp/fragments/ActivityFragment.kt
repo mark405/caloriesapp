@@ -17,7 +17,6 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import com.example.caloriesapp.activities.MainActivity
 import com.example.caloriesapp.R
-import com.example.caloriesapp.activities.DiaryActivity
 import com.example.caloriesapp.activities.UserOptionsActivity
 
 class ActivityFragment : Fragment() {
@@ -106,7 +105,7 @@ class ActivityFragment : Fragment() {
                 }
             }
         }
-        val intent = Intent(requireContext(), DiaryActivity::class.java)
+        val intent = Intent(requireContext(), DiaryFragment::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         startActivity(intent)
     }

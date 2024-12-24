@@ -17,12 +17,14 @@ class PopularAdapter(private val recipes: List<Recipe>, private val context: Con
         RecyclerView.ViewHolder(binding.root) {
         fun bind(recipe: Recipe) {
             binding.recipeTitle.text = recipe.title
+            binding.popularTime.text = recipe.cookingTime
             Glide.with(context).load(recipe.coverImage).into(binding.recipeImage)
             binding.root.setOnClickListener {
                 var intent = Intent(context, RecipeActivity::class.java)
                 intent.putExtra("img", recipe.coverImage)  // Recipe title
                 intent.putExtra("title", recipe.title)  // Recipe title
                 intent.putExtra("time", recipe.cookingTime)  // Recipe title
+                intent.putExtra("popular_time", recipe.cookingTime)  // Recipe title
                 intent.putExtra("ing", recipe.description)  // Recipe title
                 intent.putExtra("des", recipe.description)  // Meal type
                 intent.putExtra("calories", recipe.calories.toInt())  // Calories
