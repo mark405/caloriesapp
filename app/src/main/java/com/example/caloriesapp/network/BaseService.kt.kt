@@ -13,12 +13,21 @@ import retrofit2.http.GET
 import retrofit2.http.POST
 import retrofit2.http.Path
 
+data class UserDetails(
+    val name: String,
+    val email: String,
+    val calorieIntake: Int
+)
+
 interface BaseService {
     @POST("/api/save-user-options")
     suspend fun saveUserOptions(@Body options: Map<String, String>): Response<Void>
 
     @POST("/api/update-user-options")
     suspend fun updateUserOptions(@Body options: Map<String, String>): Response<Void>
+
+    @GET("/api/get-user-options")
+    suspend fun getUserDetails(): Response<UserDetails>
 
     @GET("/api/get-user-options")
     suspend fun getUserOptions(): Response<List<UserOptions>>

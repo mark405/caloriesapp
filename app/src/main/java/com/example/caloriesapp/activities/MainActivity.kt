@@ -8,8 +8,8 @@ import androidx.fragment.app.Fragment
 import com.example.caloriesapp.R
 import com.example.caloriesapp.databinding.ActivityMainBinding
 import com.example.caloriesapp.fragments.DiaryFragment
-import com.example.caloriesapp.fragments.SettingsFragment
 import com.example.caloriesapp.fragments.RecipesFragment
+import com.example.caloriesapp.fragments.SettingsFragment
 
 class MainActivity : AppCompatActivity() {
 
@@ -52,7 +52,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun replaceFragment(fragment: Fragment) {
         supportFragmentManager.beginTransaction()
-            .replace(R.id.nav_host_fragment, fragment)
+            .replace(R.id.nav_host_fragment, fragment) // Ensure nav_host_fragment is defined
             .commit()
     }
 
