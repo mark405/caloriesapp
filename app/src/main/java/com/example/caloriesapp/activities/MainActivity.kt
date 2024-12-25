@@ -12,17 +12,14 @@ import com.example.caloriesapp.fragments.RecipesFragment
 import com.example.caloriesapp.fragments.SettingsFragment
 import org.json.JSONObject
 import android.util.Base64
-import com.example.caloriesapp.network.RetrofitInstance
+import com.example.caloriesapp.databinding.ActivityReceiptBinding
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
 
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        RetrofitInstance.init(this)
 
         // Check if the user is logged in
         if (!isUserLoggedIn()) {
@@ -34,6 +31,8 @@ class MainActivity : AppCompatActivity() {
         // Set up view binding
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+
 
         // Set default fragment
         replaceFragment(RecipesFragment())

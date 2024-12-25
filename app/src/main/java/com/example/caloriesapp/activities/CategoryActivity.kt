@@ -27,6 +27,8 @@ class CategoryActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         title = intent.getStringExtra("TITTLE")
+
+
         GlobalScope.launch {
             fetchRecipes()
         }
@@ -47,6 +49,7 @@ class CategoryActivity : AppCompatActivity() {
                 // Check if the response is successful
                 if (response.isSuccessful && response.body() != null) {
                     recipes = response.body()!!
+                    println(recipes)
                     setupRecyclerView() // Set up RecyclerView with fetched recipes
                 } else {
                     // Handle the case when the response is not successful

@@ -1,5 +1,6 @@
 package com.example.caloriesapp.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -7,6 +8,8 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.caloriesapp.activities.CategoryActivity
+import com.example.caloriesapp.activities.RecipeSearchActivity
 import com.example.caloriesapp.adapters.PopularAdapter
 import com.example.caloriesapp.databinding.FragmentRecipesBinding
 import com.example.caloriesapp.models.Recipe
@@ -38,6 +41,25 @@ class RecipesFragment : Fragment() {
 
         // Set up RecyclerViews
         setupRecyclerViews()
+
+        // Handle search button click
+        binding.search.setOnClickListener {
+            startActivity(Intent(requireContext(), RecipeSearchActivity::class.java))
+        }
+
+        // Handle category button clicks
+        binding.salad.setOnClickListener {
+            navigateToCategory("Сніданок", "Breakfast")
+        }
+        binding.mainDish.setOnClickListener {
+            navigateToCategory("Обід", "Lunch")
+        }
+        binding.drinks.setOnClickListener {
+            navigateToCategory("Вечеря", "Dinner")
+        }
+        binding.desserts.setOnClickListener {
+            navigateToCategory("Снеки", "Snack")
+        }
 
         // Fetch Recipes
         fetchRecipes()
@@ -87,6 +109,14 @@ class RecipesFragment : Fragment() {
                 Toast.makeText(requireContext(), "Error occurred: ${e.localizedMessage}", Toast.LENGTH_SHORT).show()
             }
         }
+    }
+
+    private fun navigateToCategory(title: String, category: String) {
+        val intent = Intent(requireContext(), CategoryActivity::class.java).apply {
+            putExtra("TITLE", title)
+            putExtra("CATEGORY", category)
+        }
+        startActivity(intent)
     }
 
     override fun onDestroyView() {
