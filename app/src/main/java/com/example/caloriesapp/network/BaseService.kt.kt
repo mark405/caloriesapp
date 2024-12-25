@@ -41,8 +41,8 @@ interface BaseService {
     @GET("/api/meals")
     suspend fun getMeals(): Response<List<Meal>>
 
-    @DELETE("/api/meals/{id}")
-    suspend fun deleteMeal(@Path("id") id: String): Response<Void>
+    @DELETE("/api/meals/{uuid}")
+    suspend fun deleteMeal(@Path("uuid") id: String): Response<Void>
 
     @POST("/api/create_meal")
     suspend fun createMeal(@Body meal: Meal): Response<Meal>

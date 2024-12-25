@@ -4,6 +4,7 @@ import java.util.Date
 import java.util.Optional
 
 data class Meal(
+    val uuid: String,
     val title: String,
     val fats: Int,
     val proteins: Int,

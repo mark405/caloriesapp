@@ -52,7 +52,8 @@ class AddMealDialogFragment : DialogFragment() {
                         carbs = carbs,
                         weight = weight,
                         mealType = mealType,
-                        date = GregorianCalendar(2014, Calendar.FEBRUARY, 11).time
+                        date = GregorianCalendar(2014, Calendar.FEBRUARY, 11).time,
+                        uuid = ""
                     )
                     saveMeal(newMeal)
                 } else {

@@ -60,6 +60,7 @@ class DiaryFragment : Fragment() {
         mealAdapter = MealAdapter(emptyList()) { meal ->
             val intent = Intent(requireContext(), MealActivity::class.java).apply {
                 putExtra("mealTitle", meal.title)
+                putExtra("mealUuid", meal.uuid)
                 putExtra("mealType", meal.mealType)
                 putExtra("mealCalories", meal.calories)
                 putExtra("mealProteins", meal.proteins)
