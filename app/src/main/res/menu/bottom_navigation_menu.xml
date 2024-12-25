@@ -17,7 +17,7 @@
     <!-- Reports Menu Item -->
     <item
         android:id="@+id/menu_reports"
-        android:icon="@drawable/recipe_ic"
+        android:icon="@drawable/chart_ic"
     android:title="@string/reports"
  />
 
