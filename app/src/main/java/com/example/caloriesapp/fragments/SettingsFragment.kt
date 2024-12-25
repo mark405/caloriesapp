@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
+import com.example.caloriesapp.activities.AboutAppActivity
 import com.example.caloriesapp.activities.LoginActivity
 import com.example.caloriesapp.activities.UserOptionsOverviewActivity
 import com.example.caloriesapp.databinding.FragmentSettingsBinding
@@ -35,6 +36,7 @@ class SettingsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        context?.let { RetrofitInstance.init(it) }
 
         // Fetch and display user details
         fetchUserDetails()
@@ -47,9 +49,10 @@ class SettingsFragment : Fragment() {
 
         // Handle button clicks
         binding.btnLogout.setOnClickListener { logout() }
-        binding.btnContactUs.setOnClickListener { showToast("Contact us clicked") }
-        binding.btnAboutApp.setOnClickListener { showToast("About app clicked") }
-        binding.btnSettings.setOnClickListener { showToast("Settings clicked") }
+        binding.btnAboutApp.setOnClickListener {
+            val intent = Intent(requireContext(), AboutAppActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     private fun fetchUserDetails() {

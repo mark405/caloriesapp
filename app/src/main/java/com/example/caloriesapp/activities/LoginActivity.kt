@@ -6,10 +6,16 @@ import android.content.SharedPreferences
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContentProviderCompat.requireContext
+import androidx.lifecycle.lifecycleScope
 import com.example.caloriesapp.databinding.ActivityLoginBinding
 import com.example.caloriesapp.network.LoginResponse
 import com.example.caloriesapp.network.RetrofitInstance
 import com.example.caloriesapp.network.User
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -50,32 +56,34 @@ class LoginActivity : AppCompatActivity() {
                         saveAccessToken(applicationContext, accessToken)
                     }
 
-
-
                     Toast.makeText(applicationContext, "Login successful", Toast.LENGTH_SHORT).show()
+                    lifecycleScope.launch {
+                        val hasUserOptions = checkIfUserOptionsExist()
 
-                    val hasUserOptions = checkIfUserOptionsExist()
+                        println(hasUserOptions)
 
-                    println(hasUserOptions)
-
-                    try {
-                        if (hasUserOptions) {
-                            // Go to main activity
-                            val intent = Intent(this@LoginActivity, MainActivity::class.java)
-                            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                            startActivity(intent)
-                        } else {
-                            println("No user options")
-                            val intent = Intent(this@LoginActivity, UserOptionsActivity::class.java)
-                            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                            println(intent)
-                            startActivity(intent)
+                        try {
+                            if (hasUserOptions) {
+                                // Go to main activity
+                                val intent = Intent(this@LoginActivity, MainActivity::class.java)
+                                intent.flags =
+                                    Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                                startActivity(intent)
+                            } else {
+                                println("No user options")
+                                val intent =
+                                    Intent(this@LoginActivity, UserOptionsActivity::class.java)
+                                intent.flags =
+                                    Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                                println(intent)
+                                startActivity(intent)
+                            }
+                        } catch (e: Error) {
+                            println(e)
                         }
-                    }catch (e: Error){
-                        println(e)
-                    }
 
-                    finish()
+                        finish()
+                    }
                 } else {
                     println(response)
                     Toast.makeText(applicationContext, "Login failed, response: ${response.message()}", Toast.LENGTH_SHORT).show()
@@ -88,9 +96,18 @@ class LoginActivity : AppCompatActivity() {
         })
     }
 
-    private fun checkIfUserOptionsExist(): Boolean {
-        val sharedPreferences = getSharedPreferences("AppPrefs", MODE_PRIVATE)
-        return sharedPreferences.contains("userOptions")
+    private suspend fun checkIfUserOptionsExist(): Boolean {
+        return withContext(Dispatchers.IO) {
+            try {
+                val response = RetrofitInstance.baseApi.getUserDetails()
+                response.isSuccessful // Returns true if successful, false otherwise
+            } catch (e: Exception) {
+                withContext(Dispatchers.Main) {
+                    Toast.makeText(applicationContext, "Error: ${e.localizedMessage}", Toast.LENGTH_SHORT).show()
+                }
+                false
+            }
+        }
     }
 
 

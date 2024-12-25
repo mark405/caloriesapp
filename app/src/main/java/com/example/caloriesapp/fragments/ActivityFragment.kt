@@ -135,7 +135,7 @@ class ActivityFragment : Fragment() {
             put("age", age)
             put("gender", gender)
         }.toString()
-
+        println("saving user options $userOptions")
         // Save the JSON string to SharedPreferences
         editor.putString("userOptions", userOptions)
         editor.apply() // Apply changes asynchronously
