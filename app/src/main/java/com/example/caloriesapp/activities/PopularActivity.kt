@@ -45,15 +45,7 @@ class PopularActivity : AppCompatActivity() {
                     val recipes = response.body() ?: emptyList()
                     if (recipes.isNotEmpty()) {
                         println("ADASDASDASDASDASDASDASDASDAS")
-//
-//                        for (i in recipes.indices) {
-//                            if (recipes[i].mealType == intent.getStringExtra("CATEGORY")!!) {
-//                                dataList.add(recipes[i])
-//                            }
-//                            rvAdapter = CategoryAdapter(dataList, this)
-//                            binding.rvCategory.adapter = rvAdapter
-//                        }
-//
+
                         dataList.addAll(recipes)
                         rvAdapter = PopularAdapter(dataList, this@PopularActivity)
                         binding.rvPopular.adapter = rvAdapter

@@ -1,5 +1,6 @@
 package com.example.caloriesapp.fragments
 
+import SharedPreferencesManager
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
@@ -8,7 +9,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import com.example.caloriesapp.activities.LoginActivity
+import com.example.caloriesapp.activities.UserOptionsOverviewActivity
 import com.example.caloriesapp.databinding.FragmentSettingsBinding
 import com.example.caloriesapp.network.RetrofitInstance
 import com.example.caloriesapp.network.UserDetails
@@ -36,22 +39,17 @@ class SettingsFragment : Fragment() {
         // Fetch and display user details
         fetchUserDetails()
 
+        // Navigate to UserOptionsOverviewActivity
+        binding.btnMe.setOnClickListener {
+            val intent = Intent(requireContext(), UserOptionsOverviewActivity::class.java)
+            startActivity(intent)
+        }
+
         // Handle button clicks
-        binding.btnLogout.setOnClickListener {
-            logout()
-        }
-
-        binding.btnContactUs.setOnClickListener {
-            Toast.makeText(requireContext(), "Contact us clicked", Toast.LENGTH_SHORT).show()
-        }
-
-        binding.btnAboutApp.setOnClickListener {
-            Toast.makeText(requireContext(), "About app clicked", Toast.LENGTH_SHORT).show()
-        }
-
-        binding.btnSettings.setOnClickListener {
-            Toast.makeText(requireContext(), "Settings clicked", Toast.LENGTH_SHORT).show()
-        }
+        binding.btnLogout.setOnClickListener { logout() }
+        binding.btnContactUs.setOnClickListener { showToast("Contact us clicked") }
+        binding.btnAboutApp.setOnClickListener { showToast("About app clicked") }
+        binding.btnSettings.setOnClickListener { showToast("Settings clicked") }
     }
 
     private fun fetchUserDetails() {
@@ -82,7 +80,6 @@ class SettingsFragment : Fragment() {
 
     private fun bindUserDetails(userDetails: UserDetails?) {
         userDetails?.let {
-            binding.profileName.text = it.name
             binding.profileEmail.text = it.email
             binding.tvCalorieIntake.text = "${it.calorieIntake} Cal"
         }
@@ -107,6 +104,10 @@ class SettingsFragment : Fragment() {
         startActivity(intent)
 
         // Show logout message
-        Toast.makeText(requireContext(), "Logged out successfully", Toast.LENGTH_SHORT).show()
+        showToast("Logged out successfully")
+    }
+
+    private fun showToast(message: String) {
+        Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
     }
 }

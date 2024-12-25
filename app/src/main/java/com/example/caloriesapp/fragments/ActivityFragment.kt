@@ -18,6 +18,7 @@ import kotlinx.coroutines.withContext
 import com.example.caloriesapp.activities.MainActivity
 import com.example.caloriesapp.R
 import com.example.caloriesapp.activities.UserOptionsActivity
+import org.json.JSONObject
 
 class ActivityFragment : Fragment() {
 
@@ -35,7 +36,7 @@ class ActivityFragment : Fragment() {
         val activeButton: Button = view.findViewById(R.id.activeButton)
         val veryActiveButton: Button = view.findViewById(R.id.veryActiveButton)
         val nextButton: Button = view.findViewById(R.id.nextButton)
-
+        context?.let { RetrofitInstance.init(it) }
         // Button click listeners
         inactiveButton.setOnClickListener {
             selectedActivity = "sedentary"
@@ -92,7 +93,9 @@ class ActivityFragment : Fragment() {
                 withContext(Dispatchers.Main) {
                     if (response.isSuccessful) {
                         Toast.makeText(requireContext(), "Data saved successfully!", Toast.LENGTH_SHORT).show()
-                        saveUserOptions("userOptions", true)
+                        saveUserOptionsToLocalStorage(
+                            weightGoal, activityLevel, height, weight, age, gender
+                        )
                         val intent = Intent(requireContext(), MainActivity::class.java)
                         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                         startActivity(intent)
@@ -109,6 +112,33 @@ class ActivityFragment : Fragment() {
         val intent = Intent(requireContext(), MainActivity::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         startActivity(intent)
+    }
+
+
+    private fun saveUserOptionsToLocalStorage(
+        weightGoal: String,
+        activityLevel: String,
+        height: String,
+        weight: String,
+        age: String,
+        gender: String
+    ) {
+        val sharedPreferences: SharedPreferences = requireContext().getSharedPreferences("UserPrefs", android.content.Context.MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
+
+        // Create a JSON string representing the user options
+        val userOptions = JSONObject().apply {
+            put("weightGoal", weightGoal)
+            put("activityLevel", activityLevel)
+            put("height", height)
+            put("weight", weight)
+            put("age", age)
+            put("gender", gender)
+        }.toString()
+
+        // Save the JSON string to SharedPreferences
+        editor.putString("userOptions", userOptions)
+        editor.apply() // Apply changes asynchronously
     }
 
     private fun highlightSelectedButton(selected: Button, vararg others: Button) {

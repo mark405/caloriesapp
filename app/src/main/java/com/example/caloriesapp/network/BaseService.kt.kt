@@ -14,9 +14,14 @@ import retrofit2.http.POST
 import retrofit2.http.Path
 
 data class UserDetails(
-    val name: String,
     val email: String,
-    val calorieIntake: Int
+    val calorieIntake: Int,
+    val gender: String,
+    val age: String,
+    val weight: String,
+    val height: String,
+    val activityLevel: String,
+    val weightGoal: String
 )
 
 interface BaseService {
@@ -28,9 +33,6 @@ interface BaseService {
 
     @GET("/api/get-user-options")
     suspend fun getUserDetails(): Response<UserDetails>
-
-    @GET("/api/get-user-options")
-    suspend fun getUserOptions(): Response<List<UserOptions>>
 
     @GET("/api/recipes")
     suspend fun getRecipes(): Response<List<Recipe>>

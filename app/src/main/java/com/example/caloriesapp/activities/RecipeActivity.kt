@@ -32,8 +32,6 @@ class RecipeActivity : AppCompatActivity() {
         val recipeFats: TextView = findViewById(R.id.recipe_fats)
         val recipeCarbs: TextView = findViewById(R.id.recipe_carbs)
         val recipeDescription = findViewById<TextView>(R.id.recipe_description)
-        //        val fullScreenToggle: ImageView = findViewById(R.id.button) // Add this button in your XML
-//        val backButton: ImageView = findViewById(R.id.back_btn) // Add this button in your XML
 
         // Load image using Glide
         Glide.with(this).load(intent.getStringExtra("img")).into(recipeImage)

@@ -10,13 +10,19 @@ import com.example.caloriesapp.databinding.ActivityMainBinding
 import com.example.caloriesapp.fragments.DiaryFragment
 import com.example.caloriesapp.fragments.RecipesFragment
 import com.example.caloriesapp.fragments.SettingsFragment
+import org.json.JSONObject
+import android.util.Base64
+import com.example.caloriesapp.network.RetrofitInstance
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
 
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        RetrofitInstance.init(this)
 
         // Check if the user is logged in
         if (!isUserLoggedIn()) {
@@ -25,7 +31,6 @@ class MainActivity : AppCompatActivity() {
             finish()
             return
         }
-
         // Set up view binding
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -59,6 +64,38 @@ class MainActivity : AppCompatActivity() {
     private fun isUserLoggedIn(): Boolean {
         val sharedPreferences: SharedPreferences = getSharedPreferences("AppPrefs", MODE_PRIVATE)
         val token = sharedPreferences.getString("accessToken", null)
-        return !token.isNullOrEmpty()
+
+        // If the token is null or empty, the user is not logged in
+        if (token.isNullOrEmpty()) {
+            return false
+        }
+
+        // Check if the token has expired
+        return !isTokenExpired(token)
     }
+
+    private fun isTokenExpired(token: String): Boolean {
+        try {
+            // Split the token into parts (Header, Payload, Signature)
+            val parts = token.split(".")
+            if (parts.size < 2) {
+                return true // Invalid token
+            }
+
+            // Decode the payload (second part) from Base64
+            val payload = String(Base64.decode(parts[1], Base64.URL_SAFE))
+            val jsonObject = JSONObject(payload)
+
+            // Extract the expiration time (exp) from the payload
+            val exp = jsonObject.optLong("exp", 0)
+
+            // Check if the expiration time has passed
+            val currentTimeInSeconds = System.currentTimeMillis() / 1000
+            return exp < currentTimeInSeconds
+        } catch (e: Exception) {
+            e.printStackTrace()
+            return true // Assume expired if there's an error
+        }
+    }
+
 }

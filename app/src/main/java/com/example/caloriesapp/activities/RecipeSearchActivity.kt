@@ -20,6 +20,7 @@ class RecipeSearchActivity : AppCompatActivity() {
     private lateinit var dataList: ArrayList<Recipe>
     private var recipes: List<Recipe> = emptyList() // Initialize as empty list
 
+    @OptIn(DelicateCoroutinesApi::class)
     @SuppressLint("ServiceCast")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

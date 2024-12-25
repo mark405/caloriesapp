@@ -38,5 +38,11 @@
         <activity android:name=".activities.RecipeActivity" />
         <activity android:name=".activities.RecipeSearchActivity" />
 
+        <activity
+            android:name=".activities.UserOptionsOverviewActivity"
+            android:exported="true"
+            android:label="User Options" />
+
+
     </application>
 </manifest>
