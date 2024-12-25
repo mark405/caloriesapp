@@ -1,6 +1,7 @@
 package com.example.caloriesapp.models
 
 import java.util.Date
+import java.util.Optional
 
 data class Meal(
     val title: String,

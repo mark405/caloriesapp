@@ -7,8 +7,8 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 object RetrofitInstance {
-    private const val AUTH_URL = "http://10.0.2.2:8000"
-    private const val BASE_URL = "http://10.0.2.2:8000"
+    private const val AUTH_URL = "https://f30f-178-94-39-75.ngrok-free.app"
+    private const val BASE_URL = "https://f30f-178-94-39-75.ngrok-free.app"
 
     var appContext: Context? = null
 
