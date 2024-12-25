@@ -1,5 +1,6 @@
 package com.example.caloriesapp.network
 
+import com.example.caloriesapp.fragments.WeightEntry
 import com.example.caloriesapp.models.Meal
 import com.example.caloriesapp.models.Recipe
 import com.example.caloriesapp.models.UserMacros
@@ -56,10 +57,10 @@ interface BaseService {
     suspend fun getRecommendedWaterIntake(): Response<WaterIntake>
 
     @POST("/api/add_weight")
-    suspend fun addWeight(): Response<Void>
+    suspend fun addWeight(@Body weightEntry: WeightEntry): Response<Void>
 
     @GET("/api/weights")
-    suspend fun getWeights(): Response<List<Weight>>
+    suspend fun getWeights(): Response<List<WeightEntry>>
 
     @POST("/api/update-user_macros")
     suspend fun updateUserMacros(@Body options: Map<String, String>): Response<Void>

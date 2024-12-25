@@ -10,9 +10,9 @@ import com.example.caloriesapp.databinding.ActivityMainBinding
 import com.example.caloriesapp.fragments.DiaryFragment
 import com.example.caloriesapp.fragments.RecipesFragment
 import com.example.caloriesapp.fragments.SettingsFragment
+import com.example.caloriesapp.fragments.ReportsFragment
 import org.json.JSONObject
 import android.util.Base64
-import com.example.caloriesapp.databinding.ActivityReceiptBinding
 
 class MainActivity : AppCompatActivity() {
 
@@ -46,7 +46,8 @@ class MainActivity : AppCompatActivity() {
             val selectedFragment: Fragment = when (item.itemId) {
                 R.id.menu_recipes -> RecipesFragment()
                 R.id.menu_diary -> DiaryFragment()
-                R.id.menu_reports -> SettingsFragment()
+                R.id.menu_reports -> ReportsFragment()
+                R.id.menu_settings -> SettingsFragment()
                 else -> RecipesFragment()
             }
             replaceFragment(selectedFragment)

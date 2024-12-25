@@ -14,7 +14,7 @@
             android:id="@+id/tv_app_description"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Calorie Tracker - an Android app developed by 3 students as part of a coursework project to assist you in achieving your fitness goals."
+            android:text="Calorie Tracker - додаток для Android, розроблений 3 студентами в рамках курсового проекту, щоб допомогти вам у досягненні ваших фітнес-цілей."
             android:textSize="16sp"
             android:gravity="center"
             android:textAlignment="center"
@@ -25,7 +25,7 @@
             android:id="@+id/tv_features"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="We provide all the necessary features such as:"
+            android:text="Ми надаємо всі необхідні функції, такі як:"
             android:textSize="14sp"
             android:textStyle="bold"
             android:gravity="center"
@@ -35,7 +35,7 @@
             android:id="@+id/tv_features_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="• Diary to log your meals and water intake\n• Reports to keep a track of your weight\n• Recipes to quickly come up with something to cook"
+            android:text="• Щоденник для запису харчування та споживання води\n• Звіти для відстеження ваги\n• Рецепти, щоб швидко придумати, що приготувати"
             android:textSize="14sp"
             android:gravity="center"
             android:layout_marginBottom="16dp" />
@@ -68,7 +68,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Diary"
+                    android:text="Щоденник"
                     android:textSize="12sp"
                     android:gravity="center" />
             </LinearLayout>
@@ -92,7 +92,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Reports"
+                    android:text="Звіти"
                     android:textSize="12sp"
                     android:gravity="center" />
             </LinearLayout>
@@ -116,7 +116,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Recipes"
+                    android:text="Рецепти"
                     android:textSize="12sp"
                     android:gravity="center" />
             </LinearLayout>
