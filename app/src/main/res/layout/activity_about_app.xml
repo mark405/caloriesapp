@@ -1,0 +1,147 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal">
+
+        <!-- App Description -->
+        <TextView
+            android:id="@+id/tv_app_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Calorie Tracker - додаток для Android, розроблений 3 студентами в рамках курсового проекту, щоб допомогти вам у досягненні ваших фітнес-цілей."
+            android:textSize="16sp"
+            android:gravity="center"
+            android:textAlignment="center"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Features List -->
+        <TextView
+            android:id="@+id/tv_features"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Ми надаємо всі необхідні функції, такі як:"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:layout_marginBottom="8dp" />
+
+        <TextView
+            android:id="@+id/tv_features_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="• Щоденник для запису харчування та споживання води\n• Звіти для відстеження ваги\n• Рецепти, щоб швидко придумати, що приготувати"
+            android:textSize="14sp"
+            android:gravity="center"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Feature Icons -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginBottom="16dp"
+            android:weightSum="3">
+
+            <!-- Diary Icon -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center">
+
+                <ImageView
+                    android:id="@+id/iv_diary"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:src="@drawable/diary_ic"
+                    android:contentDescription="Diary Icon"
+                    android:layout_marginBottom="4dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Щоденник"
+                    android:textSize="12sp"
+                    android:gravity="center" />
+            </LinearLayout>
+
+            <!-- Reports Icon -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center">
+
+                <ImageView
+                    android:id="@+id/iv_reports"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:src="@drawable/settings_ic"
+                    android:contentDescription="Reports Icon"
+                    android:layout_marginBottom="4dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Звіти"
+                    android:textSize="12sp"
+                    android:gravity="center" />
+            </LinearLayout>
+
+            <!-- Recipes Icon -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center">
+
+                <ImageView
+                    android:id="@+id/iv_recipes"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:src="@drawable/recipe_ic"
+                    android:contentDescription="Recipes Icon"
+                    android:layout_marginBottom="4dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Рецепти"
+                    android:textSize="12sp"
+                    android:gravity="center" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Source Code Section -->
+        <TextView
+            android:id="@+id/tv_visit_source"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Visit source code"
+            android:textSize="14sp"
+            android:textColor="@color/green"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:layout_marginBottom="8dp" />
+
+        <!-- Source Code Icon -->
+        <ImageView
+            android:id="@+id/iv_source_code"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:src="@drawable/github_ic"
+            android:contentDescription="GitHub Icon"
+            android:layout_gravity="center"
+            android:layout_marginBottom="16dp" />
+    </LinearLayout>
+</ScrollView>

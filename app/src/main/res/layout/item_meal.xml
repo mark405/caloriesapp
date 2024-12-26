@@ -1,0 +1,64 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="12dp"
+    android:background="@drawable/meal_card_background"
+    android:layout_marginBottom="8dp">
+
+    <!-- Meal Title and Calories -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingBottom="8dp">
+
+        <!-- Meal Title -->
+        <TextView
+            android:id="@+id/meal_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Meal Title"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="@android:color/black" />
+
+        <!-- Calories -->
+        <TextView
+            android:id="@+id/meal_calories"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1200 Cal"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:textColor="@android:color/black" />
+    </LinearLayout>
+
+    <!-- Meal Time -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="start">
+
+        <!-- Clock Icon -->
+        <ImageView
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:src="@drawable/clock_icon"
+            android:layout_marginEnd="4dp"
+            app:tint="#3E3E3E" />
+
+        <!-- Time -->
+        <TextView
+            android:id="@+id/meal_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="12:45 PM"
+            android:textSize="14sp"
+            android:textColor="#3E3E3E" />
+    </LinearLayout>
+</LinearLayout>

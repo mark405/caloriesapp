@@ -1,0 +1,155 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="@android:color/white">
+
+    <!-- Nutrients Indicator Card -->
+    <androidx.cardview.widget.CardView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        app:cardCornerRadius="12dp"
+        app:cardElevation="8dp"
+        android:backgroundTint="@android:color/white"
+        app:cardUseCompatPadding="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nutrients Indicator"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:textColor="@android:color/black"
+                android:layout_marginBottom="16dp" />
+
+            <!-- Nutrient Rows -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="8dp"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:id="@+id/proteins_text_view"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="150 / 225 Proteins"
+                    android:textSize="14sp"
+                    android:textColor="@android:color/black" />
+
+                <ProgressBar
+                    android:id="@+id/proteins_progress_bar"
+                    android:layout_width="100dp"
+                    android:layout_height="8dp"
+                    android:progressDrawable="@drawable/progress_bar_proteins"
+                    style="?android:attr/progressBarStyleHorizontal" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="8dp"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:id="@+id/fats_text_view"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="30 / 118 Fats"
+                    android:textSize="14sp"
+                    android:textColor="@android:color/black" />
+
+                <ProgressBar
+                    android:id="@+id/fats_progress_bar"
+                    android:layout_width="100dp"
+                    android:layout_height="8dp"
+                    android:progressDrawable="@drawable/progress_bar_fats"
+                    style="?android:attr/progressBarStyleHorizontal" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="8dp"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:id="@+id/carbs_text_view"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="319 / 340 Carbs"
+                    android:textSize="14sp"
+                    android:textColor="@android:color/black" />
+
+                <ProgressBar
+                    android:id="@+id/carbs_progress_bar"
+                    android:layout_width="100dp"
+                    android:layout_height="8dp"
+                    android:progressDrawable="@drawable/progress_bar_carbs"
+                    style="?android:attr/progressBarStyleHorizontal" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:id="@+id/calories_text_view"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="2456 / 3400 Calories"
+                    android:textSize="14sp"
+                    android:textColor="@android:color/black" />
+
+                <ProgressBar
+                    android:id="@+id/calories_progress_bar"
+                    android:layout_width="100dp"
+                    android:layout_height="8dp"
+                    android:progressDrawable="@drawable/progress_bar_calories"
+                    style="?android:attr/progressBarStyleHorizontal" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+
+    <!-- Add Meal Button -->
+    <Button
+        android:id="@+id/btn_add_meal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Add Meal"
+        android:background="@color/teal_700"
+        android:textColor="@android:color/white"
+        android:layout_marginBottom="16dp"
+        android:elevation="4dp" />
+
+    <!-- Meals RecyclerView -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/meals_recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:paddingTop="8dp"
+        android:paddingBottom="16dp" />
+</LinearLayout>

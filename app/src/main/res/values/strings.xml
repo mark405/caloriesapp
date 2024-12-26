@@ -3,4 +3,30 @@
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
+    <string name="item_image_desc">Recipe image</string>
+    <string name="shade_desc">Overlay shade</string>
+    <string name="back_button_desc">Back button</string>
+    <string name="full_screen_desc">Full-screen button</string>
+
+    <!-- Nutrition Labels -->
+    <string name="calories_label">Calories</string>
+    <string name="protein_label">Protein</string>
+    <string name="fat_label">Fat</string>
+    <string name="carbs_label">Carbs</string>
+    <string name="_1_9_2_5_l">1.9 / 2.5 L</string>
+    <string name="nutrients_indicator">Nutrients Indicator</string>
+    <string name="itami">Itami</string>
+    <string name="calendar">Calendar</string>
+    <string name="todo">TODO</string>
+    <string name="recipes">Recipes</string>
+    <string name="diary">Diary</string>
+    <string name="reports">Reports</string>
+    <string name="water_intake">Water Intake</string>
+    <string-array name="meal_types">
+        <item>Breakfast</item>
+        <item>Lunch</item>
+        <item>Dinner</item>
+        <item>Snack</item>
+    </string-array>
+
 </resources>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Recipes Menu Item -->
+    <item
+        android:id="@+id/menu_recipes"
+        android:icon="@drawable/recipe_ic"
+    android:title="@string/recipes"
+ />
+
+    <!-- Diary Menu Item -->
+    <item
+        android:id="@+id/menu_diary"
+        android:icon="@drawable/diary_ic"
+    android:title="@string/diary"
+ />
+
+    <!-- Reports Menu Item -->
+    <item
+        android:id="@+id/menu_reports"
+        android:icon="@drawable/chart_ic"
+    android:title="@string/reports"
+ />
+
+    <item
+        android:id="@+id/menu_settings"
+        android:icon="@drawable/settings_ic"
+        android:title="Settings"
+        />
+</menu>

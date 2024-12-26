@@ -1,0 +1,59 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="16dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/et_meal_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Meal Title" />
+
+        <EditText
+            android:id="@+id/et_fats"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Fats (g)"
+            android:inputType="number" />
+
+        <EditText
+            android:id="@+id/et_proteins"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Proteins (g)"
+            android:inputType="number" />
+
+        <EditText
+            android:id="@+id/et_calories"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Calories"
+            android:inputType="number" />
+
+        <EditText
+            android:id="@+id/et_carbs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Carbs (g)"
+            android:inputType="number" />
+
+        <EditText
+            android:id="@+id/et_weight"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Weight (g)"
+            android:inputType="numberDecimal" />
+
+        <Spinner
+            android:id="@+id/spinner_meal_type"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:entries="@array/meal_types" />
+
+    </LinearLayout>
+</ScrollView>
